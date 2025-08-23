@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
         }
 
         // Store transcript in database if we have room info
-        if (body.room?.name && body.transcript) {
+        if (body.room?.name && body.transcript && prisma) {
           try {
             // Check if we have a call record for this room
             let call = await prisma.call.findFirst({
@@ -76,7 +76,7 @@ export async function POST(request: NextRequest) {
         console.log(`👋 Participant left: ${body.participant?.identity}`);
         
         // Update call status when participant disconnects
-        if (body.room?.name) {
+        if (body.room?.name && prisma) {
           try {
             await prisma.call.updateMany({
               where: { livekitRoomId: body.room.name },

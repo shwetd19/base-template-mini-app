@@ -32,26 +32,30 @@ export async function GET(request: NextRequest) {
 
     // Try to use database if available
     let session = null;
-    try {
-      // Check if session already exists
-      session = await prisma.session.findUnique({
-        where: { sessionId: organizationId }
-      });
-
-      // Create session if it doesn't exist
-      if (!session) {
-        console.log('🆕 Creating new session for:', organizationId);
-        session = await prisma.session.create({
-          data: {
-            sessionId: organizationId,
-            context: topic,
-            isWebTest: true,
-            phoneNumber: null
-          }
+    if (prisma) {
+      try {
+        // Check if session already exists
+        session = await prisma.session.findUnique({
+          where: { sessionId: organizationId }
         });
+
+        // Create session if it doesn't exist
+        if (!session) {
+          console.log('🆕 Creating new session for:', organizationId);
+          session = await prisma.session.create({
+            data: {
+              sessionId: organizationId,
+              context: topic,
+              isWebTest: true,
+              phoneNumber: null
+            }
+          });
+        }
+      } catch (dbError) {
+        console.log('Database operation failed, continuing without DB:', dbError);
       }
-    } catch (dbError) {
-      console.log('Database operation failed, continuing without DB:', dbError);
+    } else {
+      console.log('Prisma client not available, skipping database operations');
     }
 
     // Build educational prompt based on topic

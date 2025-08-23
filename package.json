@@ -13,8 +13,9 @@
   "types": "./index.d.ts",
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build",
-    "postinstall": "prisma generate",
+    "build": "npm run db:generate && next build",
+    "postinstall": "npm run db:generate",
+    "db:generate": "prisma generate",
     "start": "next start",
     "lint": "next lint",
     "deploy:vercel": "node scripts/deploy.js",
