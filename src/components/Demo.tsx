@@ -14,6 +14,7 @@ import {
 } from "wagmi";
 
 import { ShareButton } from "./ui/Share";
+import { LiveKitSession } from "./ui/LiveKitSession";
 
 import { config } from "~/components/providers/WagmiProvider";
 import { Button } from "~/components/ui/Button";
@@ -26,6 +27,7 @@ import { Footer } from "~/components/ui/Footer";
 import { USE_WALLET, APP_NAME } from "~/lib/constants";
 
 export type Tab = "home" | "actions" | "context" | "wallet";
+export type Screen = "topic-input" | "livekit-session";
 
 interface NeynarUser {
   fid: number;
@@ -38,6 +40,8 @@ export default function Demo(
   const { isSDKLoaded, context, added, notificationDetails, actions } =
     useMiniApp();
   const [activeTab, setActiveTab] = useState<Tab>("home");
+  const [currentScreen, setCurrentScreen] = useState<Screen>("topic-input");
+  const [topic, setTopic] = useState("");
   const [txHash, setTxHash] = useState<string | null>(null);
   const [sendNotificationResult, setSendNotificationResult] = useState("");
   const [copied, setCopied] = useState(false);
@@ -184,6 +188,12 @@ export default function Demo(
     });
   }, [chainId, signTypedData]);
 
+  const handleStartSession = useCallback(() => {
+    if (topic.trim()) {
+      setCurrentScreen("livekit-session");
+    }
+  }, [topic]);
+
   if (!isSDKLoaded) {
     return <div>Loading...</div>;
   }
@@ -202,13 +212,43 @@ export default function Demo(
 
         <h1 className="text-2xl font-bold text-center mb-4">{title}</h1>
 
-        {activeTab === "home" && (
+        {activeTab === "home" && currentScreen === "topic-input" && (
           <div className="flex items-center justify-center h-[calc(100vh-200px)] px-6">
-            <div className="text-center w-full max-w-md mx-auto">
-              <p className="text-lg mb-2">Put your content here!</p>
-              <p className="text-sm text-gray-500">Powered by Neynar 🪐</p>
+            <div className="text-center w-full max-w-md mx-auto space-y-6">
+              <div>
+                <p className="text-lg mb-2">Welcome to EduMate!</p>
+                <p className="text-sm text-gray-500">Powered by LiveKit 🪐</p>
+              </div>
+              
+              <div className="space-y-4">
+                <div>
+                  <label htmlFor="topic" className="block text-sm font-medium text-foreground mb-2">
+                    What would you like to learn about?
+                  </label>
+                  <textarea
+                    id="topic"
+                    value={topic}
+                    onChange={(e) => setTopic(e.target.value)}
+                    placeholder="Enter a topic you'd like to explore (e.g., 'quantum physics basics', 'machine learning concepts', 'history of ancient Rome')..."
+                    className="w-full p-3 border border-border rounded-lg bg-card text-card-foreground placeholder:text-muted-foreground resize-none focus:outline-none focus:ring-2 focus:ring-primary"
+                    rows={4}
+                  />
+                </div>
+                
+                <Button
+                  onClick={handleStartSession}
+                  disabled={!topic.trim()}
+                  className="w-full"
+                >
+                  Start Learning Session
+                </Button>
+              </div>
             </div>
           </div>
+        )}
+
+        {activeTab === "home" && currentScreen === "livekit-session" && (
+          <LiveKitSession topic={topic} onBack={() => setCurrentScreen("topic-input")} />
         )}
 
         {activeTab === "actions" && (

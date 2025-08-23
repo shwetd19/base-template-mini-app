@@ -1,0 +1,109 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+  engineType    = "library"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String        @id @default(cuid())
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  email         String        @unique
+  password      String        // Hashed password
+  organizations Organization[]
+}
+
+model Organization {
+  id            String          @id @default(cuid())
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  name          String
+  adminEmail    String
+  adminUserId   String          // Changed from adminClerkUserId
+  adminUser     User            @relation(fields: [adminUserId], references: [id])
+  context       String?
+  KnowledgeBase KnowledgeBase[]
+  Calls         Call[]          // Add relation to Call
+}
+
+model KnowledgeBase {
+  id             String        @id @default(cuid())
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  name           String
+  organizationId String?
+  Faqs           Faq[]
+  Organization   Organization? @relation(fields: [organizationId], references: [id])
+}
+
+model Faq {
+  id              String         @id @default(cuid())
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  question        String?
+  answer          String?
+  knowledgeBaseId String?
+  KnowledgeBase   KnowledgeBase? @relation(fields: [knowledgeBaseId], references: [id])
+}
+
+model ExternalSession {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  phoneNumber String
+  context     String
+}
+
+model Session {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  sessionId   String   @unique
+  context     String
+  phoneNumber String?
+  isWebTest   Boolean  @default(false)
+}
+
+model ApiToken {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  token     String   @unique
+  name      String?
+  isActive  Boolean  @default(true)
+}
+
+// Updated schema for your existing database structure
+model Call {
+  id             String        @id @default(cuid())
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  callSid        String        @unique
+  fromNumber     String        // Keep as required, we'll use "Unknown" as default
+  toNumber       String        // Keep as required, we'll use "Unknown" as default  
+  status         String        // Keep as required, we'll use "unknown" as default
+  duration       Int?          // Duration in seconds (nullable)
+  transcript     String?       // LiveKit transcript (nullable)
+  recordingUrl   String?       // Twilio recording URL (nullable)
+  organizationId String?       // Optional link to Organization
+  Organization   Organization? @relation(fields: [organizationId], references: [id])
+  
+  // Your existing fields:
+  direction      String?       // "inbound" or "outbound" (nullable)
+  startTime      DateTime?     // When call started (nullable)
+  endTime        DateTime?     // When call ended (nullable)
+  livekitRoomId  String?       // LiveKit room ID (nullable)
+  
+  // Add indexes for better performance
+  @@index([fromNumber])
+  @@index([toNumber])
+  @@index([status])
+  @@index([createdAt])
+  @@index([organizationId])
+  @@map("Call") // Use your existing table name
+}
