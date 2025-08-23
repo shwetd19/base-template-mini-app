@@ -1,12 +1,13 @@
 import { NextResponse } from 'next/server';
-import { getFarcasterMetadata } from '../../../lib/utils';
 
 export async function GET() {
-  try {
-    const config = await getFarcasterMetadata();
-    return NextResponse.json(config);
-  } catch (error) {
-    console.error('Error generating metadata:', error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
-  }
+  const config = {
+    accountAssociation: {
+      header: "eyJmaWQiOjEsInR5cGUiOiJjdXN0b2R5IiwiaGV4IjoiMHg4YjNkNDNiOWQ5YTU4NzNjOTQ1M2Y4YjY0NWFkYzA4NzJkMzI5Yjk4In0",
+      payload: "eyJkb21haW4iOiJmcmFtZXMudG9vbHMifQ",
+      signature: "MHg4YjNkNDNiOWQ5YTU4NzNjOTQ1M2Y4YjY0NWFkYzA4NzJkMzI5Yjk4"
+    }
+  };
+
+  return NextResponse.json(config);
 }

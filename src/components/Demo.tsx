@@ -34,9 +34,7 @@ interface NeynarUser {
   score: number;
 }
 
-export default function Demo(
-  { title }: { title?: string } = { title: "Frames v2 Demo" }
-) {
+export default function Demo() {
   const { isSDKLoaded, context, added, notificationDetails, actions } =
     useMiniApp();
   const [activeTab, setActiveTab] = useState<Tab>("home");
@@ -210,45 +208,207 @@ export default function Demo(
       <div className="mx-auto py-2 px-4 pb-20">
         <Header neynarUser={neynarUser} />
 
-        <h1 className="text-2xl font-bold text-center mb-4">{title}</h1>
-
         {activeTab === "home" && currentScreen === "topic-input" && (
-          <div className="flex items-center justify-center h-[calc(100vh-200px)] px-6">
-            <div className="text-center w-full max-w-md mx-auto space-y-6">
-              <div>
-                <p className="text-lg mb-2">Welcome to EduMate!</p>
-                <p className="text-sm text-gray-500">Powered by LiveKit 🪐</p>
-              </div>
-              
-              <div className="space-y-4">
-                <div>
-                  <label htmlFor="topic" className="block text-sm font-medium text-foreground mb-2">
-                    What would you like to learn about?
-                  </label>
-                  <textarea
-                    id="topic"
-                    value={topic}
-                    onChange={(e) => setTopic(e.target.value)}
-                    placeholder="Enter a topic you'd like to explore (e.g., 'quantum physics basics', 'machine learning concepts', 'history of ancient Rome')..."
-                    className="w-full p-3 border border-border rounded-lg bg-card text-card-foreground placeholder:text-muted-foreground resize-none focus:outline-none focus:ring-2 focus:ring-primary"
-                    rows={4}
-                  />
+          <div className="min-h-[calc(100vh-200px)] px-6 py-8">
+            <div className="w-full max-w-2xl mx-auto space-y-8">
+              {/* Hero Section */}
+              <div className="text-center space-y-4">
+                <div className="w-20 h-20 mx-auto bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mb-6 shadow-lg">
+                  <div className="text-3xl">🎓</div>
                 </div>
-                
-                <Button
-                  onClick={handleStartSession}
-                  disabled={!topic.trim()}
-                  className="w-full"
-                >
-                  Start Learning Session
-                </Button>
+
+                <div className="space-y-2">
+                  <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    Meet EduMate
+                  </h1>
+                  <p className="text-xl text-muted-foreground">
+                    Your Personalized AI Learning Coach
+                  </p>
+                </div>
+
+                <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
+                  <p className="text-lg leading-relaxed text-black">
+                    Ask me <span className="font-semibold">anything</span> you
+                    want to learn, and I&apos;ll be your dedicated AI assistant to
+                    guide you through it step by step.
+                  </p>
+                </div>
+              </div>
+
+              {/* Learning Topics Examples */}
+              <div className="space-y-4">
+                <h2 className="text-lg font-semibold text-center text-foreground">
+                  What would you like to explore today?
+                </h2>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {[
+                    {
+                      icon: "💻",
+                      topic: "Programming & Coding",
+                      example: "JavaScript fundamentals",
+                    },
+                    {
+                      icon: "🧬",
+                      topic: "Science & Nature",
+                      example: "How DNA works",
+                    },
+                    {
+                      icon: "🎨",
+                      topic: "Arts & Creativity",
+                      example: "Color theory basics",
+                    },
+                    {
+                      icon: "📊",
+                      topic: "Business & Finance",
+                      example: "Investment strategies",
+                    },
+                    {
+                      icon: "🌍",
+                      topic: "History & Culture",
+                      example: "Ancient civilizations",
+                    },
+                    {
+                      icon: "🔬",
+                      topic: "Math & Logic",
+                      example: "Calculus concepts",
+                    },
+                  ].map((category, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setTopic(category.example)}
+                      className="p-4 bg-card hover:bg-accent rounded-xl border border-border transition-all duration-200 hover:shadow-md hover:scale-[1.02] text-left group"
+                    >
+                      <div className="flex items-start space-x-3">
+                        <span className="text-2xl group-hover:scale-110 transition-transform duration-200">
+                          {category.icon}
+                        </span>
+                        <div>
+                          <h3 className="font-medium text-foreground text-sm">
+                            {category.topic}
+                          </h3>
+                          <p className="text-xs text-muted-foreground mt-1">
+                            e.g., {category.example}
+                          </p>
+                        </div>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Input Section */}
+              <div className="space-y-4">
+                <div className="relative">
+                  <label
+                    htmlFor="topic"
+                    className="block text-sm font-medium text-foreground mb-3"
+                  >
+                    Or describe what you&apos;d like to learn:
+                  </label>
+                  <div className="relative">
+                    <textarea
+                      id="topic"
+                      value={topic}
+                      onChange={(e) => setTopic(e.target.value)}
+                      placeholder="Type anything you're curious about... 
+• How do rockets work?
+• Explain machine learning in simple terms
+• Teach me Spanish conversation basics
+• What is quantum computing?"
+                      className="w-full p-4 pr-12 border-2 border-border rounded-xl bg-card text-card-foreground placeholder:text-muted-foreground resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                      rows={5}
+                    />
+                    <div className="absolute bottom-3 right-3 text-2xl opacity-50">
+                      💭
+                    </div>
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-2 text-center">
+                    The more specific you are, the better I can tailor the
+                    learning experience for you!
+                  </p>
+                </div>
+
+                <div className="space-y-3">
+                  <Button
+                    onClick={handleStartSession}
+                    disabled={!topic.trim()}
+                    className="w-full h-14 text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:from-gray-400 disabled:to-gray-500 shadow-lg hover:shadow-xl transition-all duration-200"
+                  >
+                    {!topic.trim() ? (
+                      <>
+                        <span className="mr-2">🎯</span>
+                        Choose a topic to get started
+                      </>
+                    ) : (
+                      <>
+                        <span className="mr-2">🚀</span>
+                        Start Learning with EduMate
+                      </>
+                    )}
+                  </Button>
+
+                  {topic.trim() && (
+                    <div className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg p-3">
+                      <p className="text-sm text-green-800 dark:text-green-200 text-center">
+                        <span className="font-medium">Ready to learn:</span>{" "}
+                        {topic}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Features */}
+              <div className="bg-card rounded-xl border border-border p-6 space-y-4">
+                <h3 className="font-semibold text-foreground text-center">
+                  Why EduMate?
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div className="text-center space-y-2">
+                    <div className="w-10 h-10 mx-auto bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
+                      🎯
+                    </div>
+                    <h4 className="font-medium text-sm text-foreground">
+                      Personalized
+                    </h4>
+                    <p className="text-xs text-muted-foreground">
+                      Adapts to your learning pace and style
+                    </p>
+                  </div>
+                  <div className="text-center space-y-2">
+                    <div className="w-10 h-10 mx-auto bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center">
+                      🗣️
+                    </div>
+                    <h4 className="font-medium text-sm text-foreground">
+                      Interactive
+                    </h4>
+                    <p className="text-xs text-muted-foreground">
+                      Voice conversations make learning engaging
+                    </p>
+                  </div>
+                  <div className="text-center space-y-2">
+                    <div className="w-10 h-10 mx-auto bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center">
+                      ⚡
+                    </div>
+                    <h4 className="font-medium text-sm text-foreground">
+                      Instant
+                    </h4>
+                    <p className="text-xs text-muted-foreground">
+                      Get answers and explanations right away
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         )}
 
         {activeTab === "home" && currentScreen === "livekit-session" && (
-          <LiveKitSession topic={topic} onBack={() => setCurrentScreen("topic-input")} />
+          <LiveKitSession
+            topic={topic}
+            onBack={() => setCurrentScreen("topic-input")}
+          />
         )}
 
         {activeTab === "actions" && (

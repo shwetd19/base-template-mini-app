@@ -17,7 +17,6 @@ export async function GET(request: NextRequest) {
 
     // Extract topic from room name if it follows our pattern
     let topic = 'general learning';
-    let sessionId = organizationId;
     
     if (organizationId.startsWith('edumate-')) {
       // Parse room name: edumate-{topic}-{timestamp}

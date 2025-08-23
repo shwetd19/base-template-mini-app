@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { APP_NAME } from "~/lib/constants";
 import sdk from "@farcaster/frame-sdk";
 import { useMiniApp } from "@neynar/react";
 
@@ -19,9 +18,11 @@ export function Header({ neynarUser }: HeaderProps) {
 
   return (
     <div className="relative">
-      <div className="mb-1 py-2 px-3 bg-card text-card-foreground rounded-lg flex items-center justify-between border-[3px] border-double border-primary">
-        <div className="text-lg font-light">Welcome to EduMate!</div>
-        <div className="text-lg font-light">Learn Anything with AI</div>
+      <div className="mb-1 py-2 px-3 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/30 dark:to-purple-950/30 text-card-foreground rounded-lg flex items-center justify-between border border-blue-200 dark:border-blue-800">
+        <div className="flex items-center space-x-2">
+          <span className="text-lg font-medium text-blue-700 dark:text-blue-300">🎓 EduMate</span>
+          <span className="text-sm text-muted-foreground">• Learn Anything with AI</span>
+        </div>
         {context?.user && (
           <div
             className="cursor-pointer"

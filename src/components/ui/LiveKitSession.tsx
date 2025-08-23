@@ -115,7 +115,7 @@ export function LiveKitSession({ topic, onBack }: LiveKitSessionProps) {
       
       // Enable microphone
       addLog("Enabling microphone...");
-      await room.localParticipant.enableCameraAndMicrophone(false, true);
+      await room.localParticipant.setMicrophoneEnabled(true);
       addLog("Microphone enabled");
       
     } catch (err) {
