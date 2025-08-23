@@ -30,22 +30,28 @@ export async function GET(request: NextRequest) {
 
     console.log('📚 Extracted topic:', topic);
 
-    // Check if session already exists
-    let session = await prisma.session.findUnique({
-      where: { sessionId: organizationId }
-    });
-
-    // Create session if it doesn't exist
-    if (!session) {
-      console.log('🆕 Creating new session for:', organizationId);
-      session = await prisma.session.create({
-        data: {
-          sessionId: organizationId,
-          context: topic,
-          isWebTest: true,
-          phoneNumber: null
-        }
+    // Try to use database if available
+    let session = null;
+    try {
+      // Check if session already exists
+      session = await prisma.session.findUnique({
+        where: { sessionId: organizationId }
       });
+
+      // Create session if it doesn't exist
+      if (!session) {
+        console.log('🆕 Creating new session for:', organizationId);
+        session = await prisma.session.create({
+          data: {
+            sessionId: organizationId,
+            context: topic,
+            isWebTest: true,
+            phoneNumber: null
+          }
+        });
+      }
+    } catch (dbError) {
+      console.log('Database operation failed, continuing without DB:', dbError);
     }
 
     // Build educational prompt based on topic
@@ -90,7 +96,9 @@ Start by greeting them and asking what specific aspect of ${topic} they'd like t
     };
 
     console.log('✅ Returning context for topic:', topic);
-    console.log('📋 Session created/found:', session.id);
+    if (session?.id) {
+      console.log('📋 Session created/found:', session.id);
+    }
     
     return NextResponse.json(response);
 
