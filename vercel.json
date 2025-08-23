@@ -1,8 +1,7 @@
 {
-  "buildCommand": "bash scripts/vercel-build.sh",
   "framework": "nextjs",
-  "installCommand": "npm install",
+  "buildCommand": "npm run vercel:build",
   "env": {
-    "DATABASE_URL": "@database_url"
+    "DATABASE_URL": "postgresql://postgres.kxalwmxfxvhphyzlkfeq:qnHkpXVs5D1O4HOg@aws-0-us-west-1.pooler.supabase.com:5432/postgres"
   }
 } 

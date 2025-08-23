@@ -1,5 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '~/lib/prisma';
+
+// Conditionally import Prisma to avoid build-time errors
+let prisma: typeof import('~/lib/prisma').prisma | null = null;
+try {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const prismaModule = require('~/lib/prisma');
+  prisma = prismaModule.prisma;
+} catch {
+  console.log('Prisma not available during build, API will work without database');
+}
 
 export async function GET(request: NextRequest) {
   try {

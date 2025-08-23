@@ -14,6 +14,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "npm run db:generate && next build",
+    "vercel:build": "prisma generate && next build",
     "postinstall": "npm run db:generate",
     "db:generate": "prisma generate",
     "start": "next start",
