@@ -1,0 +1,31 @@
+{
+  "accountAssociation": {
+    "header": "eyJmaWQiOjEyNzcyNzcsInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHgxNTE3ODQ3YTNBNTY3RTlGOWEyMjhCOTYzNTI5N2FDMjNCNDk0MTMzIn0",
+    "payload": "eyJkb21haW4iOiJlZHVtYXRlLWFwcC52ZXJjZWwuYXBwIn0",
+    "signature": "MHhkMGJiMGY5NTk1NjQyMWQyNjdlMmNmM2M3MjJhMjEwMDZlZDNjODk2NjdjODc4MmQzM2M4MjVmNmZhNDYzNjFhMmQ0YjNmOTFlNjNjYTgzYzZkZjI5NDVjNTMyNTA0ZTE4YjdhMjAwOTJiMWY4ZjVjZDg3OThiMzJhMjI1MzM4ZDFj"
+  },
+  "miniapp": {
+    "version": "1",
+    "name": "EduMate",
+    "iconUrl": "https://edumate-app.vercel.app/app-icon.png",
+    "homeUrl": "https://edumate-app.vercel.app",
+    "splashImageUrl": "https://edumate-app.vercel.app/edu-mate.png",
+    "splashBackgroundColor": "#000000",
+    "subtitle": "AI Learning Coach",
+    "description": "Ask me anything you want to learn, and I'll be your dedicated AI assistant to guide you step by step.",
+    "primaryCategory": "education",
+    "screenshotUrls": [
+      "https://edumate-app.vercel.app/edu-mate.png"
+    ],
+    "heroImageUrl": "https://edumate-app.vercel.app/edu-mate.png",
+    "tagline": "Your AI Learning Coach",
+    "tags": [
+      "education",
+      "ai",
+      "tutor"
+    ],
+    "ogTitle": "EduMate",
+    "ogDescription": "Learn smarter, faster with your AI tutor.",
+    "ogImageUrl": "https://edumate-app.vercel.app/edu-mate.png"
+  }
+}
