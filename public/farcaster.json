@@ -1,25 +1,26 @@
 {
-  "frame": {
-    "name": "EduMate",
-    "version": "1",
-    "iconUrl": "https://edumate-app.vercel.app/app-icon.png",
-    "homeUrl": "https://edumate-app.vercel.app",
-    "imageUrl": "https://edumate-app.vercel.app/edu-mate.png",
-    "splashImageUrl": "https://edumate-app.vercel.app/edu-mate.png",
-    "splashBackgroundColor": "#000000",
-    "webhookUrl": "https://edumate-app.vercel.app/api/webhook",
-    "subtitle": "Your Personalized AI Learning Coach",
-    "description": "Ask me anything you want to learn, and I'll be your dedicated AI assistant to guide you through it step by step.",
-    "primaryCategory": "education",
-    "screenshotUrls": [
-      "https://edumate-app.vercel.app/edu-mate.png"
-    ],
-    "heroImageUrl": "https://edumate-app.vercel.app/edu-mate.png",
-    "tagline": "Your AI Learning Coach",
-    "ogTitle": "EduMate",
-    "ogDescription": "Learn Smarter, Faster, Anytime with Your AI Tutor",
-    "ogImageUrl": "https://edumate-app.vercel.app/edu-mate.png"
-  },
+  "name": "EduMate",
+  "version": "1",
+  "iconUrl": "https://edumate-app.vercel.app/app-icon.png",
+  "homeUrl": "https://edumate-app.vercel.app",
+  "imageUrl": "https://edumate-app.vercel.app/edu-mate.png",
+  "splashImageUrl": "https://edumate-app.vercel.app/edu-mate.png",
+  "splashBackgroundColor": "#000000",
+  "webhookUrl": "https://edumate-app.vercel.app/api/webhook",
+  "subtitle": "Your Personalized AI Learning Coach",
+  "description": "Ask me anything you want to learn, and I'll be your dedicated AI assistant to guide you through it step by step.",
+  "primaryCategory": "education",
+  "screenshotUrls": [
+    "https://edumate-app.vercel.app/edu-mate.png"
+  ],
+  "heroImageUrl": "https://edumate-app.vercel.app/edu-mate.png",
+  "tagline": "Your AI Learning Coach",
+  "buttonTitle": "Open mini app",
+  "tags": ["Education"],
+  "ogTitle": "EduMate",
+  "ogDescription": "Learn Smarter, Faster, Anytime with Your AI Tutor",
+  "ogImageUrl": "https://edumate-app.vercel.app/edu-mate.png",
+  "castShareUrl": "https://warpcast.com/~/compose?text=Check+out+this+app",
   "accountAssociation": {
     "header": "eyJmaWQiOjEyNzcyNzcsInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHgxNTE3ODQ3YTNBNTY3RTlGOWEyMjhCOTYzNTI5N2FDMjNCNDk0MTMzIn0",
     "payload": "eyJkb21haW4iOiJlZHVtYXRlLWFwcC52ZXJjZWwuYXBwIn0",
