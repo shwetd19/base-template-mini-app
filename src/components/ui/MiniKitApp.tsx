@@ -15,9 +15,11 @@ export default function MiniKitApp() {
   return (
     <div className="p-4 bg-card text-foreground rounded-lg shadow-sm">
       <h1 className="text-2xl font-bold mb-2">Welcome, User {context?.user?.fid}!</h1>
-      <p className="text-muted-foreground mb-2">Launched from: {context?.location}</p>
+      <p className="text-muted-foreground mb-2">
+        Launched from: {JSON.stringify(context?.location) || 'Unknown'}
+      </p>
       {context?.client?.added && (
-        <p className="text-green-600">✅ You've saved this app!</p>
+        <p className="text-green-600">✅ You&apos;ve saved this app!</p>
       )}
     </div>
   );
