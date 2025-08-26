@@ -23,6 +23,7 @@
     "cleanup": "lsof -ti :3000 | xargs kill -9"
   },
   "dependencies": {
+    "@coinbase/onchainkit": "^0.38.19",
     "@farcaster/auth-client": ">=0.3.0 <1.0.0",
     "@farcaster/auth-kit": ">=0.6.0 <1.0.0",
     "@farcaster/frame-core": ">=0.0.29 <1.0.0",
@@ -40,9 +41,9 @@
     "livekit-client": "^2.15.5",
     "livekit-server-sdk": "^2.13.2",
     "lucide-react": "^0.469.0",
-    "prisma": "^6.14.0",
     "mipd": "^0.0.7",
     "next": "^15",
+    "prisma": "^6.14.0",
     "react": "^19",
     "react-dom": "^19",
     "tailwind-merge": "^2.6.0",
