@@ -7,6 +7,9 @@ export async function GET() {
       payload: "eyJkb21haW4iOiJlZHVtYXRlLWFwcC52ZXJjZWwuYXBwIn0",
       signature: "anVR+aGPrLFbGTkfaKQhre1HJXypo1gxyIo1zCAeAm8pX9x3Mp96HMfX+Du2voEozuX5MK/z9Go41r5AJOjAoxw="
     },
+    baseBuilder: {
+      allowedAddresses: ["0x603f7E6573Ca8C4675DfCF075276886bF9cf0691"]
+    },
     miniapp: {
       version: "1",
       name: "EduMate",
