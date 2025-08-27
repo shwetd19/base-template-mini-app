@@ -12,7 +12,7 @@ export async function GET() {
       name: "EduMate",
       iconUrl: "https://edumate-app.vercel.app/app-icon.png",
       homeUrl: "https://edumate-app.vercel.app",
-      subtitle: "Your Personalized AI Learning Coach",
+      subtitle: "Your AI Learning Coach",
       description: "Ask me anything you want to learn, and I'll be your dedicated AI assistant to guide you through it step by step.",
       primaryCategory: "education",
       screenshotUrls: [
