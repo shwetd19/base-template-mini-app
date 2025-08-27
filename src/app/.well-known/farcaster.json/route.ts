@@ -18,6 +18,9 @@ export async function GET() {
       screenshotUrls: [
         "https://edumate-app.vercel.app/edu-mate.png"
       ],
+      tags: [
+        "education"
+      ],
       imageUrl: "https://edumate-app.vercel.app/edu-mate.png",
       heroImageUrl: "https://edumate-app.vercel.app/edu-mate.png",
       splashImageUrl: "https://edumate-app.vercel.app/edu-mate.png",
@@ -27,7 +30,7 @@ export async function GET() {
       ogTitle: "EduMate - Your Learning Coach",
       ogDescription: "Learn Smarter, Faster, Anytime with Your AI Tutor",
       ogImageUrl: "https://edumate-app.vercel.app/edu-mate.png",
-      webhookUrl: "https://edumate-app.vercel.app/"
+      webhookUrl: "https://edumate-app.vercel.app/api/webhook"
     }
   };
 
