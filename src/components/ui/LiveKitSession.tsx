@@ -141,6 +141,12 @@ export function LiveKitSession({ topic, onBack }: LiveKitSessionProps) {
     addLog("Disconnected successfully");
   }, [addLog]);
 
+  const disconnectAndGoBack = useCallback(() => {
+    addLog("Ending session and returning to topic selection...");
+    disconnectFromLiveKit();
+    onBack();
+  }, [disconnectFromLiveKit, onBack, addLog]);
+
   if (isConnected) {
     return (
       <div className="flex flex-col h-[calc(100vh-200px)] px-6">
@@ -185,7 +191,7 @@ export function LiveKitSession({ topic, onBack }: LiveKitSessionProps) {
             End Session
           </Button>
           <Button
-            onClick={onBack}
+            onClick={disconnectAndGoBack}
             variant="outline"
             className="w-full"
           >

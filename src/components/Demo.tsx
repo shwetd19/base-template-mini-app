@@ -229,8 +229,8 @@ export default function Demo() {
                 <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
                   <p className="text-lg leading-relaxed text-black">
                     Ask me <span className="font-semibold">anything</span> you
-                    want to learn, and I&apos;ll be your dedicated AI assistant to
-                    guide you through it step by step.
+                    want to learn, and I&apos;ll be your dedicated AI assistant
+                    to guide you through it step by step.
                   </p>
                 </div>
               </div>
@@ -330,7 +330,7 @@ export default function Demo() {
                 </div>
 
                 <div className="space-y-3">
-                  <Button
+                  {/* <Button
                     onClick={handleStartSession}
                     disabled={!topic.trim()}
                     className="w-full h-14 text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:from-gray-400 disabled:to-gray-500 shadow-lg hover:shadow-xl transition-all duration-200"
@@ -344,6 +344,24 @@ export default function Demo() {
                       <>
                         <span className="mr-2">🚀</span>
                         Start Learning with EduMate
+                      </>
+                    )}
+                  </Button> */}
+
+                  <Button
+                    onClick={handleStartSession}
+                    disabled={!topic.trim()}
+                    className="w-full h-14 text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:from-gray-400 disabled:to-gray-500 shadow-lg hover:shadow-xl transition-all duration-200"
+                  >
+                    {!topic.trim() ? (
+                      <>
+                        <span className="mr-2">🎯</span>
+                        Choose Topic
+                      </>
+                    ) : (
+                      <>
+                        <span className="mr-2">🚀</span>
+                        Start Learning
                       </>
                     )}
                   </Button>
