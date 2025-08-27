@@ -3,9 +3,9 @@ import { NextResponse } from 'next/server';
 export async function GET() {
   const config = {
     accountAssociation: {
-      header: "eyJmaWQiOjEsInR5cGUiOiJjdXN0b2R5IiwiaGV4IjoiMHg4YjNkNDNiOWQ5YTU4NzNjOTQ1M2Y4YjY0NWFkYzA4NzJkMzI5Yjk4In0",
-      payload: "eyJkb21haW4iOiJmcmFtZXMudG9vbHMifQ",
-      signature: "MHg4YjNkNDNiOWQ5YTU4NzNjOTQ1M2Y4YjY0NWFkYzA4NzJkMzI5Yjk4"
+      header: "eyJmaWQiOjEyNzcyNzcsInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHgxNTE3ODQ3YTNBNTU3RTlGOWEyMjhCOTYzNTI5N2FDMjNCNDk0MTMzIn0",
+      payload: "eyJkb21haW4iOiJlZHVtYXRlLWFwcC52ZXJjZWwuYXBwIn0",
+      signature: "MHhkMGJiMGY5NTk1NjQyMWQyNjdlMmNmM2M3MjJhMjEwMDZlZDNjODk2NjdjODc4MmQzM2M4MjVmNmZhNDYzNjFhMmQ0YjNmOTFlNjNjYTgzYzZkZjI5NDVjNTMyNTA0ZTE4YjdhMjAwOTJiMWY4ZjVjZDg3OThiMzJhMjI1MzM4ZDFj"
     },
     frame: {
       version: "1",
